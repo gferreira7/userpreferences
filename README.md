@@ -7,7 +7,7 @@ The User Preferences API is a RESTful API that allows users to save their accoun
 To use the User Preferences API, you will need to send a POST request to the endpoint URL with a JSON payload and a user ID header. The JSON payload should conform to the schema defined in the Swagger documentation.
 
 For example, to save a user's preferences with the ID "12345", you could send the following request:
-
+```
 POST https://us-central1-hostelworld-assignment.cloudfunctions.net/api/v1/user/preferences
 Content-Type: application/json
 user-id: 12345
@@ -18,7 +18,7 @@ user-id: 12345
 "showLanguagesPreferences": false,
 "showProfilePreferences": true
 }
-
+```
 ## Swagger Documentation
 
 The Swagger documentation for the User Preferences API is available in JSON format in the `swaggerDocs.json` file in this repository. The documentation includes detailed information about the API, including the endpoint URL, request and response payloads, error codes, and examples.
