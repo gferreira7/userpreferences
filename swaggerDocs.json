@@ -1,0 +1,98 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "User Preferences API",
+    "description": "An API with a single endpoint to allow users to save their account preferences such as language, profile details, and terms & conditions acceptance.",
+    "contact": {
+      "email": "guilhermersrferreira@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://virtserver.swaggerhub.com/GUILHERMERSRFERREIRA/UserPreferences/1.0.0",
+      "description": "SwaggerHub API Auto Mocking"
+    },
+    {
+      "url": "https://us-central1-hostelworld-assignment.cloudfunctions.net/api",
+      "description": "SwaggerHub API Auto Mocking"
+    }
+  ],
+  "tags": [
+    {
+      "name": "developers",
+      "description": "Operations available to regular developers"
+    }
+  ],
+  "paths": {
+    "/v1/user/preferences": {
+      "post": {
+        "tags": [
+          "developers"
+        ],
+        "summary": "Saves the user preferences",
+        "description": "By passing in the appropriate options and user-id, you can save your preferences in the API",
+        "operationId": "savePreferences",
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "description": "The ID of the user saving their preferences",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PreferencesDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Preferences saved"
+          },
+          "400": {
+            "description": "Invalid input, preferences object invalid"
+          },
+          "409": {
+            "description": "Duplicate requests for the same user-id"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PreferencesDto": {
+        "type": "object",
+        "properties": {
+          "termsAndConditionsAccepted": {
+            "type": "boolean",
+            "example": true
+          },
+          "languagePreference": {
+            "type": "string",
+            "example": "EN"
+          },
+          "showLanguagesPreferences": {
+            "type": "boolean",
+            "example": false
+          },
+          "showProfilePreference": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      }
+    }
+  }
+}
